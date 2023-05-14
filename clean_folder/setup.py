@@ -6,7 +6,7 @@ setup(
     description = 'Sorts files in a folder',
     author = 'Oleksandr Martyniuk',
     author_emeil = 'sasha.martynuk.1@gmail.com',
-    url = '',
+    url = 'https://github.com/CadejoBlanko/-.git',
     license = 'MIT',
     packages = find_namespace_packages(),  
     include_package_data = True,
