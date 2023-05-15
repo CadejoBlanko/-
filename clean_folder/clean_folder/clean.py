@@ -5,17 +5,24 @@ from pathlib import Path
 
 
 
+list_images = [".jpeg", ".png", ".jpg", ".svg"]
+list_documents = [".doc", ".docx", ".txt", ".pdf", ".xlsx", ".pptx"]
+list_audio = [".mp3", ".ogg", ".wav", ".amr"]
+list_video = [".avi", ".mp4", ".mov", ".mkv"]
+list_archives = [".zip", ".gz", ".tar"]
+
+
 def folder_creation(path_f):
 
-    path_f = Path(path_f)
+        path_f = Path(path_f)
 
-    Path(f'{str(path_f)}/' + 'images').mkdir(parents=True, exist_ok=True)
-    Path(f'{str(path_f)}/' + 'documents').mkdir(parents=True, exist_ok=True)
-    Path(f'{str(path_f)}/' + 'audio').mkdir(parents=True, exist_ok=True)
-    Path(f'{str(path_f)}/' + 'video').mkdir(parents=True, exist_ok=True)
-    Path(f'{str(path_f)}/' + 'archives').mkdir(parents=True, exist_ok=True)
+        Path(f'{str(path_f)}/' + 'images').mkdir(parents=True, exist_ok=True)
+        Path(f'{str(path_f)}/' + 'documents').mkdir(parents=True, exist_ok=True)
+        Path(f'{str(path_f)}/' + 'audio').mkdir(parents=True, exist_ok=True)
+        Path(f'{str(path_f)}/' + 'video').mkdir(parents=True, exist_ok=True)
+        Path(f'{str(path_f)}/' + 'archives').mkdir(parents=True, exist_ok=True)
 
-    sorter(path_f, path_f)
+        sorter(path_f, path_f)
 
 
 
@@ -72,19 +79,19 @@ def sorter(folder, path_f):
     
     for el in folder.iterdir():
 
-        if el.is_file() and el.suffix == ".jpeg" or el.suffix == ".png" or el.suffix == ".jpg" or el.suffix == ".svg":
+        if el.is_file() and el.suffix in list_images:
             shutil.move(os.path.join(folder, el.name), os.path.join(f'{str(path_f)}\\' + 'images', el.name))
 
-        elif el.is_file() and el.suffix == ".doc" or el.suffix == ".docx" or el.suffix == ".txt" or el.suffix == ".pdf" or el.suffix == ".xlsx" or el.suffix == ".pptx": 
+        elif el.is_file() and el.suffix in list_documents: 
             shutil.move(os.path.join(folder, el.name), os.path.join(f'{str(path_f)}\\' + 'documents', el.name))
 
-        elif el.is_file() and el.suffix == ".mp3" or el.suffix == ".ogg" or el.suffix == ".wav" or el.suffix == ".amr":
+        elif el.is_file() and el.suffix in list_audio:
             shutil.move(os.path.join(folder, el.name), os.path.join(f'{str(path_f)}\\' + 'audio', el.name))
 
-        elif el.is_file() and el.suffix == ".avi" or el.suffix == ".mp4" or el.suffix == ".mov" or el.suffix == ".mkv":
+        elif el.is_file() and el.suffix in list_video:
             shutil.move(os.path.join(folder, el.name), os.path.join(f'{str(path_f)}\\' + 'video', el.name))
 
-        elif el.is_file() and el.suffix == ".zip" or el.suffix == ".gz" or el.suffix == ".tar":
+        elif el.is_file() and el.suffix in list_archives:
    
             name_archive = (el.name).split(".")
             Path(f'{str(path_f)}/' + 'archives/' + name_archive[0]).mkdir(parents=True, exist_ok=True)
@@ -101,9 +108,9 @@ def sorter(folder, path_f):
             else:
                 os.rmdir(el)  
 
-
     translit(folder)
 
 
 
-folder_creation(sys.argv[1])
+if __name__ == '__main__':
+    folder_creation(sys.argv[1])
