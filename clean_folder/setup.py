@@ -2,7 +2,7 @@ from setuptools import setup, find_namespace_packages
 
 setup(
     name = 'Sorter',
-    version = '0.1',
+    version = '0.2',
     description = 'Sorts files in a folder',
     author = 'Oleksandr Martyniuk',
     author_emeil = 'sasha.martynuk.1@gmail.com',
